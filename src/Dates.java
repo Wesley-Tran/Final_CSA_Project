@@ -13,28 +13,29 @@ public class Dates {
     public static final int YEAR = CURRENT_DATE.getYear();
 
     public static String[] convertISO(String ISO) {
+        System.out.println(ISO);
         String[] arr = new String[3];
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 2; i++) { //nred to get last value
             arr[i] = ISO.substring(0,ISO.indexOf("-"));
             ISO = ISO.substring(ISO.indexOf("-")+1);
         }
         return arr;
     }
 
-    public static String convertMonthName(int monthNum) { //hash map for month num to name (might be a method hat exists)
+    public static String convertToName(int monthNum) { //hash map for month num to name (might be a method hat exists)
         HashMap<Integer,String> dayMonth = new HashMap<>();
-        dayMonth.put(1,"JANUARY");
-        dayMonth.put(2,"FEBRUARY");
-        dayMonth.put(3,"MARCH");
-        dayMonth.put(4,"APRIL");
-        dayMonth.put(5,"MAY");
-        dayMonth.put(6,"JUNE");
-        dayMonth.put(7,"JULY");
-        dayMonth.put(8,"AUGUST");
-        dayMonth.put(9,"SEPTEMBER");
-        dayMonth.put(10,"OCTOBER");
-        dayMonth.put(11,"NOVEMBER");
-        dayMonth.put(12,"DECEMBER");
+        dayMonth.put(1,"January");
+        dayMonth.put(2,"February");
+        dayMonth.put(3,"March");
+        dayMonth.put(4,"April");
+        dayMonth.put(5,"May");
+        dayMonth.put(6,"June");
+        dayMonth.put(7,"July");
+        dayMonth.put(8,"August");
+        dayMonth.put(9,"September");
+        dayMonth.put(10,"October");
+        dayMonth.put(11,"November");
+        dayMonth.put(12,"December");
         return dayMonth.get(monthNum);
 
     }

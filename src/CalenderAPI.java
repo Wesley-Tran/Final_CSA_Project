@@ -3,7 +3,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,14 +28,15 @@ public class CalenderAPI {
             JSONObject obj = objArr.getJSONObject(i);
             String date = obj.getString("date");
             String[] converted = Dates.convertISO(date); //collect the date string
-            String tempMon = Dates.convertMonthName(Integer.parseInt(converted[0])); //use dates to convert monthNUm to its name
+            String tempMon = Dates.convertToName(Integer.parseInt(converted[0])); //use dates to convert monthNUm to its name
             int tempDay = Integer.parseInt(converted[1]);
             int tempYear = Integer.parseInt(converted[2]);
-            dayList.addDay(new Day(tempMon, tempDay, tempYear));
-        } //still need to get day of the week from the data
+            dayList.addDay(new Day(tempMon, tempDay, tempYear, obj.getString("weekday")));
+        }
 
 
-        return new Calender(new ArrayList<String[]>(), "MONDAY");
+        return new Calender(dayList, dayList.getDay(0).getMonth()); //might wnat to pass it in as all caps?
+
     }
 
 

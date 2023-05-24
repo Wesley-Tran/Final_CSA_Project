@@ -24,13 +24,15 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="cebef" class="javax.swing.JTextField" binding="calenderMon">
+          <component id="cebef" class="javax.swing.JTextField" binding="calenderMon" custom-create="true">
             <constraints>
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
-            <properties/>
+            <properties>
+              <text value=""/>
+            </properties>
           </component>
           <vspacer id="8fe73">
             <constraints>
@@ -53,7 +55,7 @@
               <text value="➡"/>
             </properties>
           </component>
-          <component id="bcd09" class="javax.swing.JTextField" binding="calenderYear">
+          <component id="bcd09" class="javax.swing.JTextField" binding="calenderYear" custom-create="true">
             <constraints>
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
