@@ -13,12 +13,12 @@ public class Dates {
     public static final int YEAR = CURRENT_DATE.getYear();
 
     public static String[] convertISO(String ISO) {
-        System.out.println(ISO);
         String[] arr = new String[3];
         for (int i = 0; i < 2; i++) { //nred to get last value
             arr[i] = ISO.substring(0,ISO.indexOf("-"));
             ISO = ISO.substring(ISO.indexOf("-")+1);
         }
+        arr[2] = ISO;
         return arr;
     }
 

@@ -1,22 +1,23 @@
 import javax.swing.*;
 
-public class CalenderGUI extends JFrame{
+public class CalendarGUI extends JFrame{
     private JPanel mainPanel;
     private JLabel mainLabel;
-    private JPanel calenderPanel;
+    private JPanel calendarPanel;
     private JPanel sidePanel;
     private JButton addEvent;
     private JTextField eventMon;
     private JTextField eventDay;
     private JTextField eventYear;
-    private JTextField calenderMon;
+    private JTextField calendarMon;
     private JButton left;
     private JButton right;
-    private JTextField calenderYear;
-    private JTable calenderDisplay;
-    private Calender calender;
+    private JTextField calendarYear;
+    private JTable calendarDisplay;
+    private Calendar calendar = CalendarAPI.getCalender(Dates.YEAR, Dates.MONTH);;
+    private CalendarModel model = new CalendarModel(calendar.getMonth().getAllDays());
 
-    public CalenderGUI() {
+    public CalendarGUI() {
         createUIComponents();
     }
     //need to initialize the first calendar to MONTH and YEAR
@@ -26,8 +27,10 @@ public class CalenderGUI extends JFrame{
         setSize(1200, 500);
         setLocationByPlatform(true); //
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        calenderMon = new JTextField(calender.getMonth().getDay(0).getMonth());
-        calenderYear = new JTextField(calender.getMonth().getDay(0).getYear());
+        calendarMon.setText(calendar.getMonth().getDay(0).getMonth());
+        calendarYear.setText(Integer.toString(calendar.getMonth().getDay(0).getYear()));
+        calendarMon.setVisible(true);
+        calendarYear.setVisible(true);
         //listeners
         setVisible(true);
     }

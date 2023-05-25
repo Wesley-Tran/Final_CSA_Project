@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-public class Calender {
+public class Calendar {
 
     private Month month; //list of days
     private String firstWeekday;
 
-    public Calender(Month month, String firstWeekday) {
+    public Calendar(Month month, String firstWeekday) {
         this.month = month;
         this.firstWeekday = firstWeekday;
     }

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 2">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/CalendarModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Calender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalenderAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalenderAPI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalenderGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalenderGUI.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalenderGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalenderGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_CSA_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Final_CSA_Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Calender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calendar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalenderAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalenderGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalenderGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dates.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Month.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Month.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -47,6 +56,11 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
   }
 }]]></component>
   <component name="RunManager">
