@@ -22,7 +22,6 @@ public class CalendarAPI {
         }
         Month dayList = new Month();
         JSONArray objArr = new JSONArray(urlResponse);
-        System.out.println(objArr);
         for (int i = 0; i < objArr.length(); i++) {
             JSONObject obj = objArr.getJSONObject(i);
             String date = obj.getString("date");
@@ -30,8 +29,8 @@ public class CalendarAPI {
             int tempYear = Integer.parseInt(converted[0]);
             String tempMon = converted[1];//Dates.convertToName(Integer.parseInt(converted[1])); //use dates to convert monthNUm to its name
             int tempDay = Integer.parseInt(converted[2]);
-
-            dayList.addDay(new Day(tempMon, tempDay, tempYear, obj.getString("weekday")));
+            String weekday = obj.getString("weekday");
+            dayList.addDay(new Day(tempMon, tempDay, tempYear, weekday.toUpperCase()));
         }
 
 

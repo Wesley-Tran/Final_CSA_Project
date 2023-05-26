@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public class Day {
 
     private String month; //stored in its number form but it is a String (need to parse int then convert to its name)
@@ -18,6 +20,18 @@ public class Day {
     public int getYear() {return year;}
 
     public String getWeekDay() {return weekday;}
+    public int numWeekDay() {
+        return switch (weekday.toLowerCase()) {
+            case "sunday" -> java.util.Calendar.SUNDAY;
+            case "monday" -> java.util.Calendar.MONDAY;
+            case "tuesday" -> java.util.Calendar.TUESDAY;
+            case "wednesday" -> java.util.Calendar.WEDNESDAY;
+            case "thursday" -> java.util.Calendar.THURSDAY;
+            case "friday" -> java.util.Calendar.FRIDAY;
+            case "saturday" -> java.util.Calendar.SATURDAY;
+            default -> 0;
+        };
+    }
 
     @Override
     public String toString() {

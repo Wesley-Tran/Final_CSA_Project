@@ -4,6 +4,7 @@
 import java.time.LocalDate; //might want to get local time as well idk yet
 import java.util.HashMap;
 import java.time.Month;
+import java.util.Locale;
 
 
 public class Dates {
@@ -37,7 +38,23 @@ public class Dates {
         dayMonth.put(11,"November");
         dayMonth.put(12,"December");
         return dayMonth.get(monthNum);
-
+    }
+    public static int convertToInt(String monthName) { //hash map for month num to name (might be a method hat exists)
+        HashMap<String,Integer> dayMonth = new HashMap<>();
+        dayMonth.put("January",1);
+        dayMonth.put("February",2);
+        dayMonth.put("March",3);
+        dayMonth.put("April",4);
+        dayMonth.put("May",5);
+        dayMonth.put("June",6);
+        dayMonth.put("July",7);
+        dayMonth.put("August",8);
+        dayMonth.put("September",9);
+        dayMonth.put("October",10);
+        dayMonth.put("November",11);
+        dayMonth.put("December",12);
+        System.out.println(monthName);
+        return dayMonth.get(monthName.substring(0,1).toUpperCase() + monthName.substring(1).toLowerCase());
     }
 
 
