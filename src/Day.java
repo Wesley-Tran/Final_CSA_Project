@@ -35,6 +35,6 @@ public class Day {
 
     @Override
     public String toString() {
-        return year + "-" + day + "-" + month;
+        return "" + day;
     }
 }

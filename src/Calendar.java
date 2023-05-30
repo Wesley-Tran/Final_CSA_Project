@@ -1,7 +1,7 @@
 public class Calendar {
 
     private Month month; //list of days
-    private String firstWeekday;
+    private final String firstWeekday;
 
     public Calendar(Month month, String firstWeekday) {
         this.month = month;
@@ -12,4 +12,5 @@ public class Calendar {
         return month;
     }
 
+    public String getFirstWeekday() {return firstWeekday;}
 }

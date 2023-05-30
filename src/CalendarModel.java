@@ -1,14 +1,15 @@
 import javax.swing.table.AbstractTableModel;
-import java.util.GregorianCalendar;
 
 public class CalendarModel extends AbstractTableModel {
 
     private final String[] weekdayNames;
     private Object[][] arrModel;
-    Day[] days;
+    private Day[] days;
+    private Calendar tempCal;
 
-    public CalendarModel(Day[] days) {
-        this.days = days;
+    public CalendarModel(Calendar temp) {
+        tempCal = temp;
+        this.days = temp.getMonth().getAllDays();
         arrModel = new Object[7][7];
         weekdayNames = new String[]{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
@@ -20,18 +21,18 @@ public class CalendarModel extends AbstractTableModel {
     }
 
     public void setMonth(int year, String month) {
-        for (int i = 1; i < 7; ++i)
-            for (int j = 0; j < 7; ++j)
+        for (int i = 1; i < 7; ++i) {
+            for (int j = 0; j < 7; ++j) {
                 arrModel[i][j] = null;
-        java.util.GregorianCalendar cal = new java.util.GregorianCalendar();
-        cal.set(year, Dates.convertToInt(month), 1);
-        int offset = cal.get(java.util.GregorianCalendar.DAY_OF_WEEK) - 1;
-        offset += 7;
-        int num = days.length;
-        for (int i = 0; i < num; ++i) {
-            arrModel[offset / 7][offset % 7] = Integer.toString(i + 1);
-            ++offset;
+            }
         }
+        int offset = days[0].numWeekDay() - 1;
+        offset += 7;
+        for (Day day : days) {
+            arrModel[offset / 7][offset % 7] = day;
+            offset++;
+        }
+
     }
 
     @Override
