@@ -1,4 +1,5 @@
 import javax.swing.table.AbstractTableModel;
+import java.util.Arrays;
 
 public class CalendarModel extends AbstractTableModel {
 
@@ -22,9 +23,7 @@ public class CalendarModel extends AbstractTableModel {
 
     public void setMonth(int year, String month) {
         for (int i = 1; i < 7; ++i) {
-            for (int j = 0; j < 7; ++j) {
-                arrModel[i][j] = null;
-            }
+            Arrays.fill(arrModel[i], null);
         }
         int offset = days[0].numWeekDay() - 1;
         offset += 7;
@@ -33,6 +32,10 @@ public class CalendarModel extends AbstractTableModel {
             offset++;
         }
 
+    }
+    public void setMonth(int year, String month, Calendar temp) { //change the month
+        tempCal = temp;
+        setMonth(year,month);
     }
 
     @Override

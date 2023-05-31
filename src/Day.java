@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Day {
@@ -6,6 +7,7 @@ public class Day {
     private int day;
     private int year;
     private String weekday;
+    private ArrayList<String> events;
     //might wnat a holiday list but not for now?
 
     public Day(String month,int day, int year,String weekday) {
@@ -13,6 +15,7 @@ public class Day {
         this.day = day;
         this.year = year;
         this.weekday = weekday;
+        events = new ArrayList<>();
     }
 
     public String getMonth() {return month;}
@@ -35,6 +38,11 @@ public class Day {
 
     @Override
     public String toString() {
-        return "" + day;
+        StringBuilder text = new StringBuilder();
+        for (String event : events) {
+            text.append(event).append("\n");
+        }
+
+        return String.valueOf(day) + "\n\n" + text;
     }
 }

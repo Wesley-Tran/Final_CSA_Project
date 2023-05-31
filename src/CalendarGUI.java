@@ -1,9 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class CalendarGUI extends JFrame implements MouseListener {
+public class CalendarGUI extends JFrame implements MouseListener, ActionListener {
     private JPanel mainPanel;
     private JLabel mainLabel;
     private JPanel calendarPanel;
@@ -46,13 +48,22 @@ public class CalendarGUI extends JFrame implements MouseListener {
         calendarDisplay.setShowGrid(true);
         calendarDisplay.setGridColor(Color.BLACK);
         //listeners
-
+        calendarDisplay.addMouseListener(this);
     }
+
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
-            if () //if point is in the display object's size then u can get the row and column at the point using Jtable's method
+            //if point is in the display object's size then u can get the row and column at the point using Jtable's method
+            int row = calendarDisplay.getSelectedRow();
+            if (row != 0) { //dont use weekdays
+                int column = calendarDisplay.getSelectedColumn();
+                //call a method to create a new window and pass in the day that was clicked
+                //System.out.println(calendarDisplay.getValueAt(row,column));
+
+
+            }
         }
     }
 
@@ -73,6 +84,11 @@ public class CalendarGUI extends JFrame implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
     }
 }

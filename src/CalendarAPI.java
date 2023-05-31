@@ -6,7 +6,7 @@ import java.net.http.HttpResponse;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class CalendarAPI {
+public class  CalendarAPI {
     private static final String BASE_URL = "http://calapi.inadiutorium.cz/api/v0/en/calendars/default/";
     public static Calendar getCalender(int year, int month) {
         String url = BASE_URL + year + "/" + month;
