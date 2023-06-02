@@ -94,7 +94,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         Object source = e.getSource();
         if (source instanceof JButton button) {
             if (button.getText().equals("⬅")) { //need to put in code to check the getList() to see if month was created already
-                Dates.getList().add(calendar);
+                Dates.getList().add(calendar);   //also need to change the textfields :P
                 calendar = Dates.lastMonth(calendar.getMonth().getDay(0).getMonth(),
                                            calendar.getMonth().getDay(0).getYear());
                 model.setMonth(calendar);
