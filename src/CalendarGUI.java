@@ -49,6 +49,8 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         calendarDisplay.setGridColor(Color.BLACK);
         //listeners
         calendarDisplay.addMouseListener(this);
+        left.addActionListener(this);
+        right.addActionListener(this);
     }
 
 
@@ -89,6 +91,23 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        Object source = e.getSource();
+        if (source instanceof JButton button) {
+            if (button.getText().equals("⬅")) { //need to put in code to check the getList() to see if month was created already
+                Dates.getList().add(calendar);
+                calendar = Dates.lastMonth(calendar.getMonth().getDay(0).getMonth(),
+                                           calendar.getMonth().getDay(0).getYear());
+                model.setMonth(calendar);
+                calendarDisplay.setModel(model);
+                calendarDisplay.repaint();
+            } else if (button.getText().equals("➡")) {
+                Dates.getList().add(calendar);
+                calendar = Dates.nextMonth(calendar.getMonth().getDay(0).getMonth(),
+                        calendar.getMonth().getDay(0).getYear());
+                model.setMonth(calendar);
+                calendarDisplay.setModel(model);
+                calendarDisplay.repaint();
+            }
+        }
     }
 }

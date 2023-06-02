@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 3">
+    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CalendarAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Final_CSA_Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Final_CSA_Project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalendarGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalendarModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Scheduler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,9 +44,9 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/student/IdeaProjects/untitled3&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/wesle/IdeaProjects/Final_CSA_Project/json-20230227.jar&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -86,7 +87,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685033944719</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Day 6">
+      <created>1685550116166</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685550116166</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Day 6">
+      <created>1685550169686</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1685550169686</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -104,6 +119,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Day 2" />
     <MESSAGE value="Day 3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Day 3" />
+    <MESSAGE value="Day 6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 6" />
   </component>
 </project>

@@ -2,9 +2,9 @@
  * Utility class to determine dates from time package and convert month names to numbers
  */
 import java.time.LocalDate; //might want to get local time as well idk yet
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.time.Month;
-import java.util.Locale;
 
 
 public class Dates {
@@ -12,6 +12,26 @@ public class Dates {
     public static final Month MONTH_NAME = CURRENT_DATE.getMonth();
     public static final int MONTH = MONTH_NAME.getValue();
     public static final int YEAR = CURRENT_DATE.getYear();
+    private static ArrayList<Calendar> list = new ArrayList<>();
+
+    public static ArrayList<Calendar> getList() {return list;}
+
+    public static Calendar nextMonth(String month, int year) {
+        int temp = Integer.parseInt(month);
+        if (temp+1 == 13) {
+            temp = 0;
+            year += 1;
+        }
+        return CalendarAPI.getCalender(year,temp+1);
+    }
+    public static Calendar lastMonth(String month, int year) {
+        int temp = Integer.parseInt(month);
+        if (temp-1 == 0) {
+            temp = 13;
+            year -= 1;
+        }
+        return CalendarAPI.getCalender(year,temp-1);
+    }
 
     public static String[] convertISO(String ISO) {
         String[] arr = new String[3];
@@ -53,7 +73,6 @@ public class Dates {
         dayMonth.put("October",10);
         dayMonth.put("November",11);
         dayMonth.put("December",12);
-        System.out.println(monthName);
         return dayMonth.get(monthName.substring(0,1).toUpperCase() + monthName.substring(1).toLowerCase());
     }
 

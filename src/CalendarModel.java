@@ -33,9 +33,10 @@ public class CalendarModel extends AbstractTableModel {
         }
 
     }
-    public void setMonth(int year, String month, Calendar temp) { //change the month
+    public void setMonth(Calendar temp) { //change the month
         tempCal = temp;
-        setMonth(year,month);
+        days = tempCal.getMonth().getAllDays();
+        setMonth(days[0].getYear(),days[0].getMonth());
     }
 
     @Override
