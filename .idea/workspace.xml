@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 7" />
+    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 7">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalendarAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CalendarGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

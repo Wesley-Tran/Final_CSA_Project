@@ -1,11 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
-public class CalendarGUI extends JFrame implements MouseListener, ActionListener {
+public class CalendarGUI extends JFrame implements MouseListener, ActionListener, FocusListener {
     private JPanel mainPanel;
     private JLabel mainLabel;
     private JPanel calendarPanel;
@@ -19,10 +16,9 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     private JButton right;
     private JTextField calendarYear;
     private Calendar calendar;
-
     private CalendarModel model;
-
     private JTable calendarDisplay;
+    private String lastMon;
 
     public CalendarGUI() {
         createUIComponents();
@@ -40,17 +36,19 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         calendarDisplay.setRowHeight(80);
         calendarDisplay.setRowHeight(0,20);
         //calendarDisplay.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        String month = calendar.getMonth().getDay(0).getMonth();
+        lastMon = calendar.getMonth().getDay(0).getMonth();
         int year = calendar.getMonth().getDay(0).getYear();
-        calendarMon.setText(month);
+        calendarMon.setText(lastMon);
         calendarYear.setText(Integer.toString(year));
-        model.setMonth(year,Dates.convertToName(Integer.parseInt(month)));
+        model.setMonth(year,Dates.convertToName(Integer.parseInt(lastMon)));
         calendarDisplay.setShowGrid(true);
         calendarDisplay.setGridColor(Color.BLACK);
         //listeners
         calendarDisplay.addMouseListener(this);
         left.addActionListener(this);
         right.addActionListener(this);
+        calendarMon.addFocusListener(this);
+        calendarYear.addFocusListener(this);
     }
 
 
@@ -94,20 +92,57 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         Object source = e.getSource();
         if (source instanceof JButton button) {
             if (button.getText().equals("⬅")) { //need to put in code to check the getList() to see if month was created already
-                Dates.getList().add(calendar);   //also need to change the textfields :P
-                calendar = Dates.lastMonth(calendar.getMonth().getDay(0).getMonth(),
-                                           calendar.getMonth().getDay(0).getYear());
-                model.setMonth(calendar);
-                calendarDisplay.setModel(model);
-                calendarDisplay.repaint();
+                changeMonth(false);
             } else if (button.getText().equals("➡")) {
-                Dates.getList().add(calendar);
-                calendar = Dates.nextMonth(calendar.getMonth().getDay(0).getMonth(),
-                        calendar.getMonth().getDay(0).getYear());
-                model.setMonth(calendar);
-                calendarDisplay.setModel(model);
-                calendarDisplay.repaint();
+                changeMonth(true);
             }
         }
+    }
+
+    @Override
+    public void focusGained(FocusEvent e) {
+        lastMon = calendarMon.getText();
+    }
+
+    @Override
+    public void focusLost(FocusEvent e) {
+        Object source = e.getSource();
+        if (source instanceof JTextField textField) {
+            int tempMon = Integer.parseInt(calendarMon.getText());
+            if (tempMon > 12 || tempMon < 1) {calendarMon.setText(lastMon);}
+            else{changeMonth(calendarYear.getText(),tempMon);}
+        }
+    }
+    private void changeMonth(boolean next) {
+        Dates.getList().add(calendar);
+        if (next) {
+            calendar = Dates.nextMonth(calendar.getMonth().getDay(0).getMonth(),
+                    calendar.getMonth().getDay(0).getYear());
+        } else {
+            calendar = Dates.lastMonth(calendar.getMonth().getDay(0).getMonth(),
+                    calendar.getMonth().getDay(0).getYear());
+        }
+        calendarMon.setText(calendar.getMonth().getDay(0).getMonth());
+        calendarYear.setText("" + calendar.getMonth().getDay(0).getYear());
+        model.setMonth(calendar);
+        calendarDisplay.setModel(model);
+        calendarDisplay.repaint();
+    }
+
+    private void changeMonth(String year, int month) {
+        Dates.getList().add(calendar);
+        for (Calendar cal : Dates.getList()) {
+            Day day = cal.getMonth().getDay(0);
+            if (Integer.parseInt(day.getMonth()) == month && day.getYear() == Integer.parseInt(year)) {
+                Dates.getList().remove(Dates.getList().size()-1);
+                model.setMonth(cal);
+                calendarDisplay.setModel(model);
+                calendarDisplay.repaint();
+                return;
+            }
+        }
+        model.setMonth(CalendarAPI.getCalender(Integer.parseInt(year), month));
+        calendarDisplay.setModel(model);
+        calendarDisplay.repaint();
     }
 }
