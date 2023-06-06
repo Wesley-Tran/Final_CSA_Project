@@ -18,6 +18,10 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     private Calendar calendar;
     private CalendarModel model;
     private JTable calendarDisplay;
+    private JPanel dayPanel;
+    private JLabel dayName;
+    private JTable dayTable;
+    private JTextPane eventPanel;
     private String lastMon;
 
     public CalendarGUI() {
@@ -29,12 +33,16 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         model = new CalendarModel(calendar);
         setContentPane(mainPanel);
         setTitle("Insert Calender App Name: ");
-        setSize(1200, 580);
+        setSize(900, 580);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         calendarDisplay.setModel(model);
         calendarDisplay.setRowHeight(80);
         calendarDisplay.setRowHeight(0,20);
+
+        eventMon.setName("eventMon");
+        eventDay.setName("eventDay");
+        eventYear.setName("eventYear");
         //calendarDisplay.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
         lastMon = calendar.getMonth().getDay(0).getMonth();
         int year = calendar.getMonth().getDay(0).getYear();
@@ -49,6 +57,10 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         right.addActionListener(this);
         calendarMon.addFocusListener(this);
         calendarYear.addFocusListener(this);
+        eventMon.addFocusListener(this);
+        eventYear.addFocusListener(this);
+        eventDay.addFocusListener(this);
+        addEvent.addActionListener(this);
     }
 
 
@@ -95,19 +107,38 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 changeMonth(false);
             } else if (button.getText().equals("➡")) {
                 changeMonth(true);
+            } else if (button.getText().equals("Add")) {
+
             }
         }
     }
 
     @Override
     public void focusGained(FocusEvent e) {
-        lastMon = calendarMon.getText();
+        Object source = e.getSource();
+        if (source instanceof JTextField textField) {
+            String text = textField.getText();
+            switch (text) {
+                case "Month" -> eventMon.setText("");
+                case "Day" -> eventDay.setText("");
+                case "Year" -> eventYear.setText("");
+            }
+        } else {
+            lastMon = calendarMon.getText();
+        }
     }
 
     @Override
     public void focusLost(FocusEvent e) {
         Object source = e.getSource();
         if (source instanceof JTextField textField) {
+            String text = textField.getName();
+            switch (text) {
+                case "eventMon" -> eventMon.setText("Month");
+                case "eventDay" -> eventDay.setText("Day");
+                case "eventYear" -> eventYear.setText("Year");
+            }
+        } else {
             int tempMon = Integer.parseInt(calendarMon.getText());
             if (tempMon > 12 || tempMon < 1) {calendarMon.setText(lastMon);}
             else{changeMonth(calendarYear.getText(),tempMon);}
