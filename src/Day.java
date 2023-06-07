@@ -19,7 +19,14 @@ public class Day {
     }
 
     public String getMonth() {return month;}
-    public int getDay() {return day;}
+
+    public ArrayList<String> getEvents() {return events;}
+    public void addEvent(String i) {
+        if (!events.contains(i)) {
+            events.add(i);
+        }
+    }
+
     public int getYear() {return year;}
 
     public String getWeekDay() {return weekday;}

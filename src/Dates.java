@@ -96,7 +96,18 @@ public class Dates {
         return dayMonth.get(monthName.substring(0,1).toUpperCase() + monthName.substring(1).toLowerCase());
     }
 
-
+    public static Calendar containsCal(String month, String year) {
+        int monthNum = Integer.parseInt(month);
+        int yearNum = Integer.parseInt(year);
+        for (Calendar i : list) {
+            int calMon = Integer.parseInt(i.getMonth().getDay(0).getMonth());
+            if (calMon == monthNum && yearNum == i.getMonth().getDay(0).getYear()) {
+                return i;
+            }
+        }
+        list.add(CalendarAPI.getCalender(yearNum,monthNum));
+        return list.get(list.size()-1);
+    }
 
 
 }

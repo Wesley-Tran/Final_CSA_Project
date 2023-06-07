@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Objects;
 
 public class CalendarGUI extends JFrame implements MouseListener, ActionListener, FocusListener {
     private JPanel mainPanel;
@@ -21,6 +22,8 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     private JPanel dayPanel;
     private JLabel dayName;
     private JTable dayTable;
+
+    private DayModel dayModel;
     private JTextPane eventPanel;
     private String lastMon;
 
@@ -39,6 +42,8 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         calendarDisplay.setModel(model);
         calendarDisplay.setRowHeight(80);
         calendarDisplay.setRowHeight(0,20);
+
+        dayTable.setShowGrid(false);
 
         eventMon.setName("eventMon");
         eventDay.setName("eventDay");
@@ -67,12 +72,12 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getClickCount() == 2) {
-            //if point is in the display object's size then u can get the row and column at the point using Jtable's method
             int row = calendarDisplay.getSelectedRow();
             if (row != 0) { //dont use weekdays
                 int column = calendarDisplay.getSelectedColumn();
-                //call a method to create a new window and pass in the day that was clicked
-                //System.out.println(calendarDisplay.getValueAt(row,column));
+                dayModel = new DayModel((Day) calendarDisplay.getValueAt(row,column));
+                dayTable.setModel(dayModel);
+                dayTable.repaint();
 
 
             }
@@ -107,8 +112,9 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 changeMonth(false);
             } else if (button.getText().equals("➡")) {
                 changeMonth(true);
-            } else if (button.getText().equals("Add")) {
-
+            } else if (button.getText().equals("Add")) { //event is not being added to the day correctly (maybe something wrong with reference bewteen calendars?)
+                Calendar cal = Dates.containsCal(eventMon.getText(), eventYear.getText());
+                cal.getMonth().getDay(Integer.parseInt(eventDay.getText())-1).addEvent(eventPanel.getText());
             }
         }
     }
@@ -119,7 +125,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         if (source instanceof JTextField textField) {
             String text = textField.getText();
             switch (text) {
-                case "Month" -> eventMon.setText("");
+                case "Month Num" -> eventMon.setText("");
                 case "Day" -> eventDay.setText("");
                 case "Year" -> eventYear.setText("");
             }
@@ -134,9 +140,25 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         if (source instanceof JTextField textField) {
             String text = textField.getName();
             switch (text) {
-                case "eventMon" -> eventMon.setText("Month");
-                case "eventDay" -> eventDay.setText("Day");
-                case "eventYear" -> eventYear.setText("Year");
+                case "eventMon":
+                    String tempMon = eventMon.getText();
+                    if (tempMon.equals("") || (Integer.parseInt(tempMon) > 12 || Integer.parseInt(tempMon) < 1)) {
+                        eventMon.setText("Month Num");
+                    }
+                case "eventDay":
+                    String tempDay = eventDay.getText();
+                    try {
+                        if (tempDay.equals("") || (Integer.parseInt(tempDay) > 31 || Integer.parseInt(tempDay) < 1)) {
+                            eventDay.setText("Day");
+                        }
+                    } catch (Exception ignored) {
+                        eventDay.setText("Day");
+                    }
+                case "eventYear":
+                    String tempYear = eventYear.getText();
+                    if (tempYear.equals("")) { // || (Integer.parseInt(tempYear) > 12 || Integer.parseInt(tempYear) < 1)
+                        eventYear.setText("Year");
+                    }
             }
         } else {
             int tempMon = Integer.parseInt(calendarMon.getText());
@@ -176,4 +198,5 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         calendarDisplay.setModel(model);
         calendarDisplay.repaint();
     }
+
 }
