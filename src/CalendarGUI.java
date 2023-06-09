@@ -33,6 +33,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     //need to initialize the first calendar to MONTH and YEAR
     private void createUIComponents() {
         calendar = CalendarAPI.getCalender(Dates.YEAR, Dates.MONTH);
+        Dates.getList().add(calendar);
         model = new CalendarModel(calendar);
         setContentPane(mainPanel);
         setTitle("Insert Calender App Name: ");
@@ -75,6 +76,8 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
             int row = calendarDisplay.getSelectedRow();
             if (row != 0) { //dont use weekdays
                 int column = calendarDisplay.getSelectedColumn();
+                System.out.println(calendarDisplay.getValueAt(row,column));
+                System.out.println(((Day) calendarDisplay.getValueAt(row,column)).getEvents());
                 dayModel = new DayModel((Day) calendarDisplay.getValueAt(row,column));
                 dayTable.setModel(dayModel);
                 dayTable.repaint();
@@ -114,6 +117,9 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 changeMonth(true);
             } else if (button.getText().equals("Add")) { //event is not being added to the day correctly (maybe something wrong with reference bewteen calendars?)
                 Calendar cal = Dates.containsCal(eventMon.getText(), eventYear.getText());
+                System.out.println(eventMon.getText() + " and " + eventYear.getText());
+                System.out.println(calendar);
+                System.out.println(cal);
                 cal.getMonth().getDay(Integer.parseInt(eventDay.getText())-1).addEvent(eventPanel.getText());
             }
         }
@@ -139,36 +145,38 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         Object source = e.getSource();
         if (source instanceof JTextField textField) {
             String text = textField.getName();
-            switch (text) {
-                case "eventMon":
-                    String tempMon = eventMon.getText();
-                    if (tempMon.equals("") || (Integer.parseInt(tempMon) > 12 || Integer.parseInt(tempMon) < 1)) {
-                        eventMon.setText("Month Num");
-                    }
-                case "eventDay":
-                    String tempDay = eventDay.getText();
-                    try {
-                        if (tempDay.equals("") || (Integer.parseInt(tempDay) > 31 || Integer.parseInt(tempDay) < 1)) {
+            if (text == null) {
+                int tempMon = Integer.parseInt(calendarMon.getText());
+                if (tempMon > 12 || tempMon < 1) {calendarMon.setText(lastMon);}
+                else{changeMonth(calendarYear.getText(),tempMon);}
+            } else {
+                switch (text) {
+                    case "eventMon":
+                        String tempMon = eventMon.getText();
+                        if (tempMon.equals("") || (Integer.parseInt(tempMon) > 12 || Integer.parseInt(tempMon) < 1)) {
+                            eventMon.setText("Month Num");
+                        }
+                    case "eventDay":
+                        String tempDay = eventDay.getText();
+                        try {
+                            if (tempDay.equals("") || (Integer.parseInt(tempDay) > 31 || Integer.parseInt(tempDay) < 1)) {
+                                eventDay.setText("Day");
+                            }
+                        } catch (Exception ignored) {
                             eventDay.setText("Day");
                         }
-                    } catch (Exception ignored) {
-                        eventDay.setText("Day");
-                    }
-                case "eventYear":
-                    String tempYear = eventYear.getText();
-                    if (tempYear.equals("")) { // || (Integer.parseInt(tempYear) > 12 || Integer.parseInt(tempYear) < 1)
-                        eventYear.setText("Year");
-                    }
+                    case "eventYear":
+                        String tempYear = eventYear.getText();
+                        if (tempYear.equals("")) { // || (Integer.parseInt(tempYear) > 12 || Integer.parseInt(tempYear) < 1)
+                            eventYear.setText("Year");
+                        }
+                }
             }
-        } else {
-            int tempMon = Integer.parseInt(calendarMon.getText());
-            if (tempMon > 12 || tempMon < 1) {calendarMon.setText(lastMon);}
-            else{changeMonth(calendarYear.getText(),tempMon);}
         }
     }
     private void changeMonth(boolean next) {
         Dates.getList().add(calendar);
-        if (next) {
+        if (next) { //next month is wrong
             calendar = Dates.nextMonth(calendar.getMonth().getDay(0).getMonth(),
                     calendar.getMonth().getDay(0).getYear());
         } else {

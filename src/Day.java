@@ -45,11 +45,6 @@ public class Day {
 
     @Override
     public String toString() {
-        StringBuilder text = new StringBuilder();
-        for (String event : events) {
-            text.append(event).append("\n");
-        }
-
-        return String.valueOf(day) + "\n\n" + text;
+        return String.valueOf(day);
     }
 }

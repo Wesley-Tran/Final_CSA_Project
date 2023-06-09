@@ -17,7 +17,6 @@ public class Dates {
     public static ArrayList<Calendar> getList() {return list;}
 
     public static Calendar nextMonth(String month, int year) {
-        System.out.println("next called");
         int temp = Integer.parseInt(month);
         if (temp+1 == 13) {
             temp = 0;
@@ -35,7 +34,6 @@ public class Dates {
         return CalendarAPI.getCalender(year,temp);
     }
     public static Calendar lastMonth(String month, int year) {
-        System.out.println("last called");
         int temp = Integer.parseInt(month);
         if (temp-1 == 0) {
             temp = 13;
@@ -44,7 +42,6 @@ public class Dates {
         temp-=1;
         for (Calendar cal : list) {
             Day day = cal.getMonth().getDay(0);
-            System.out.println(day.getMonth() + " and " + temp);
             if (Integer.parseInt(day.getMonth()) == temp && day.getYear() == year) {
                 list.remove(list.size()-1); //repeat
                 return cal;

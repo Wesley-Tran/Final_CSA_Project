@@ -13,8 +13,8 @@ public class DayModel extends AbstractTableModel {
         } else {
             eventArray = new Object[day.getEvents().size()][3];
             for (Object[] i : eventArray) {
-                i[0] = new JCheckBox();
-                i[1] = null;
+                i[0] = false;
+                i[1] = "";
             }
             for (int i = 0; i < day.getEvents().size(); i++) {
                 eventArray[i][2] = day.getEvents().get(i);
@@ -23,8 +23,17 @@ public class DayModel extends AbstractTableModel {
     }
 
 
+    @Override
+    public Class getColumnClass(int c) {
+        return getValueAt(0, c).getClass();
+    }
 
-
+    @Override
+    public boolean isCellEditable(int row, int col) {
+        //Note that the data/cell address is constant,
+        //no matter where the cell appears onscreen.
+        return col != 2;
+    }
     @Override
     public int getRowCount() {
         if (eventArray == null) {return 0;}
