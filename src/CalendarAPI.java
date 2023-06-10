@@ -33,8 +33,9 @@ public class  CalendarAPI {
             dayList.addDay(new Day(tempMon, tempDay, tempYear, weekday.toUpperCase()));
         }
 
-
-        return new Calendar(dayList, dayList.getDay(0).getMonth()); //might wnat to pass it in as all caps?
+        Calendar tempCal = new Calendar(dayList, dayList.getDay(0).getMonth());
+        Dates.getList().add(tempCal);
+        return tempCal; //might wnat to pass it in as all caps?
 
     }
 

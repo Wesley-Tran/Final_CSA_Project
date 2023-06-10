@@ -4,10 +4,10 @@ import javax.swing.table.AbstractTableModel;
 public class DayModel extends AbstractTableModel {
 
     private Object[][] eventArray;
-
+    private Day day;
 
     public DayModel(Day day) {
-
+        this.day = day;
         if (day.getEvents().size() == 0) {
             eventArray = null;
         } else {
@@ -22,6 +22,7 @@ public class DayModel extends AbstractTableModel {
         }
     }
 
+    public Day getDay() {return day;}
 
     @Override
     public Class getColumnClass(int c) {

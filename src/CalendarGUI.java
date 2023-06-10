@@ -25,6 +25,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
 
     private DayModel dayModel;
     private JTextPane eventPanel;
+    private JLabel eventLabel;
     private String lastMon;
 
     public CalendarGUI() {
@@ -33,7 +34,6 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
     //need to initialize the first calendar to MONTH and YEAR
     private void createUIComponents() {
         calendar = CalendarAPI.getCalender(Dates.YEAR, Dates.MONTH);
-        Dates.getList().add(calendar);
         model = new CalendarModel(calendar);
         setContentPane(mainPanel);
         setTitle("Insert Calender App Name: ");
@@ -76,12 +76,9 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
             int row = calendarDisplay.getSelectedRow();
             if (row != 0) { //dont use weekdays
                 int column = calendarDisplay.getSelectedColumn();
-                System.out.println(calendarDisplay.getValueAt(row,column));
-                System.out.println(((Day) calendarDisplay.getValueAt(row,column)).getEvents());
                 dayModel = new DayModel((Day) calendarDisplay.getValueAt(row,column));
                 dayTable.setModel(dayModel);
                 dayTable.repaint();
-
 
             }
         }
@@ -117,10 +114,13 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 changeMonth(true);
             } else if (button.getText().equals("Add")) { //event is not being added to the day correctly (maybe something wrong with reference bewteen calendars?)
                 Calendar cal = Dates.containsCal(eventMon.getText(), eventYear.getText());
-                System.out.println(eventMon.getText() + " and " + eventYear.getText());
-                System.out.println(calendar);
-                System.out.println(cal);
-                cal.getMonth().getDay(Integer.parseInt(eventDay.getText())-1).addEvent(eventPanel.getText());
+                Day selectedDay = cal.getMonth().getDay(Integer.parseInt(eventDay.getText())-1); //
+                selectedDay.addEvent(eventPanel.getText());  //add event ot the day
+                if (dayModel != null && selectedDay == dayModel.getDay()) {
+                    dayModel = new DayModel(selectedDay);
+                    dayTable.setModel(dayModel);
+                    dayTable.repaint();
+                }
             }
         }
     }
@@ -175,7 +175,6 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         }
     }
     private void changeMonth(boolean next) {
-        Dates.getList().add(calendar);
         if (next) { //next month is wrong
             calendar = Dates.nextMonth(calendar.getMonth().getDay(0).getMonth(),
                     calendar.getMonth().getDay(0).getYear());
@@ -188,21 +187,21 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         model.setMonth(calendar);
         calendarDisplay.setModel(model);
         calendarDisplay.repaint();
+        System.out.println(Dates.getList());
     }
 
     private void changeMonth(String year, int month) {
-        Dates.getList().add(calendar);
         for (Calendar cal : Dates.getList()) {
             Day day = cal.getMonth().getDay(0);
             if (Integer.parseInt(day.getMonth()) == month && day.getYear() == Integer.parseInt(year)) {
-                Dates.getList().remove(Dates.getList().size()-1);
                 model.setMonth(cal);
                 calendarDisplay.setModel(model);
                 calendarDisplay.repaint();
                 return;
             }
         }
-        model.setMonth(CalendarAPI.getCalender(Integer.parseInt(year), month));
+        calendar = CalendarAPI.getCalender(Integer.parseInt(year), month);
+        model.setMonth(calendar);
         calendarDisplay.setModel(model);
         calendarDisplay.repaint();
     }
