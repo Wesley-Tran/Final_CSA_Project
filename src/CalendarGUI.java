@@ -46,6 +46,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
 
         dayTable.setShowGrid(false);
 
+
         eventMon.setName("eventMon");
         eventDay.setName("eventDay");
         eventYear.setName("eventYear");
@@ -78,8 +79,13 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 int column = calendarDisplay.getSelectedColumn();
                 dayModel = new DayModel((Day) calendarDisplay.getValueAt(row,column));
                 dayTable.setModel(dayModel);
+                if (dayModel.getDay().getEvents().size() != 0) {
+                    dayTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+                    dayTable.getColumnModel().getColumn(0).setWidth(10);
+                    dayTable.getColumnModel().getColumn(1).setPreferredWidth(20);
+                    dayTable.getColumnModel().getColumn(1).setWidth(20);
+                }
                 dayTable.repaint();
-
             }
         }
     }
@@ -153,9 +159,14 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
                 switch (text) {
                     case "eventMon":
                         String tempMon = eventMon.getText();
-                        if (tempMon.equals("") || (Integer.parseInt(tempMon) > 12 || Integer.parseInt(tempMon) < 1)) {
+                        try {
+                            if (tempMon.equals("") || (Integer.parseInt(tempMon) > 12 || Integer.parseInt(tempMon) < 1)) {
+                                eventMon.setText("Month Num");
+                            }
+                        } catch (Exception ignored) {
                             eventMon.setText("Month Num");
                         }
+
                     case "eventDay":
                         String tempDay = eventDay.getText();
                         try {
@@ -187,7 +198,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         model.setMonth(calendar);
         calendarDisplay.setModel(model);
         calendarDisplay.repaint();
-        System.out.println(Dates.getList());
+        //System.out.println(Dates.getList());
     }
 
     private void changeMonth(String year, int month) {

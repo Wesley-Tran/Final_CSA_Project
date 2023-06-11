@@ -160,7 +160,11 @@
                     <preferred-size width="150" height="50"/>
                   </grid>
                 </constraints>
-                <properties/>
+                <properties>
+                  <font name="Inter"/>
+                  <showHorizontalLines value="false"/>
+                  <showVerticalLines value="false"/>
+                </properties>
               </component>
             </children>
           </grid>
