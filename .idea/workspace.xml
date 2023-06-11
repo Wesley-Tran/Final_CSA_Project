@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 11">
+    <list default="true" id="0ae03f08-47a3-4b45-8524-b873fedb1b35" name="Changes" comment="Day 12">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalendarGUI.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CalendarGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CalendarGUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DayModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DayModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686428701487</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Day 12">
+      <created>1686499449721</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1686499449721</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,6 +175,7 @@
     <MESSAGE value="Day 8" />
     <MESSAGE value="Day 9" />
     <MESSAGE value="Day 11" />
-    <option name="LAST_COMMIT_MESSAGE" value="Day 11" />
+    <MESSAGE value="Day 12" />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 12" />
   </component>
 </project>

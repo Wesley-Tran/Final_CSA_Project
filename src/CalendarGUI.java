@@ -36,7 +36,7 @@ public class CalendarGUI extends JFrame implements MouseListener, ActionListener
         calendar = CalendarAPI.getCalender(Dates.YEAR, Dates.MONTH);
         model = new CalendarModel(calendar);
         setContentPane(mainPanel);
-        setTitle("Insert Calender App Name: ");
+        setTitle("Creative Calendar App Name");
         setSize(900, 580);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
